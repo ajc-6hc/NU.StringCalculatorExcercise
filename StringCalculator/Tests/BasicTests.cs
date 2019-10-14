@@ -24,6 +24,7 @@ namespace StringCalculator.Tests
         string largeIntegerIncludedList;
         string inputOfMultipleCharDelimiterList;
         string inputOfMultipleDelimiterList;
+        string inputOfMultiplecharMultipleDelimiterList;
 
         [SetUp]
         public void SetUp()
@@ -41,6 +42,7 @@ namespace StringCalculator.Tests
             largeIntegerIncludedList = "1,2,3,1001";
             inputOfMultipleCharDelimiterList = "//[***]\n1***2***3";
             inputOfMultipleDelimiterList = "//[:][*]\n1*2:3";
+            inputOfMultiplecharMultipleDelimiterList = "//[:)][(:]\n1:)2(:3";
         }
 
         [Test]
@@ -117,12 +119,17 @@ namespace StringCalculator.Tests
         {
             Assert.AreEqual(6, calculator.Add(inputOfMultipleCharDelimiterList));
         }
-
-
+        
         [Test]
         public void TestMultipleInputDelimiter()
         {
             Assert.AreEqual(6, calculator.Add(inputOfMultipleDelimiterList));
+        }
+
+        [Test]
+        public void TestMultipleInputMultipleCharDelimiter()
+        {
+            Assert.AreEqual(6, calculator.Add(inputOfMultiplecharMultipleDelimiterList));
         }
     }
 }
