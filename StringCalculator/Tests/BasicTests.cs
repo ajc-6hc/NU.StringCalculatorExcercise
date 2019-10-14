@@ -20,6 +20,7 @@ namespace StringCalculator.Tests
         string correctCombinationOfDelimitersList;
         string incorrectCombinationOfDelimitersList;
         string inputOfDelimiterList;
+        string negativeIntegerIncludedList;
 
         [SetUp]
         public void SetUp()
@@ -33,6 +34,7 @@ namespace StringCalculator.Tests
             correctCombinationOfDelimitersList = "1\n2,3";
             incorrectCombinationOfDelimitersList = "1,\n";
             inputOfDelimiterList = "//:\n1,2\n3:4";
+            negativeIntegerIncludedList = "1,2,-3,-4";
         }
 
         [Test]
@@ -81,6 +83,21 @@ namespace StringCalculator.Tests
         public void TestInputOfDelimiter()
         {
             Assert.AreEqual(10, calculator.Add(inputOfDelimiterList));
+        }
+
+        [Test]
+        public void TestNegativeNumbers()
+        {
+            Assert.That(() => calculator.Add(negativeIntegerIncludedList), Throws.Exception);
+
+            try {
+                calculator.Add(negativeIntegerIncludedList);
+            }
+            catch(Exception e)
+            {
+                Assert.That(() => e.Message.Contains("-3"));
+                Assert.That(() => e.Message.Contains("-4"));
+            }
         }
     }
 }
