@@ -11,7 +11,20 @@ namespace StringCalculator
         public int Add(string numbers)
         {
             if (string.IsNullOrEmpty(numbers)) return 0;
-            throw new NotImplementedException();
+            else return GetIntegerFromString(numbers);
+        }
+
+        private int GetIntegerFromString(string number)
+        {
+            int numberToReturn;
+            if(Int32.TryParse(number, out numberToReturn))
+            {
+                return numberToReturn;
+            }
+            else
+            {
+                throw new Exception("Value was not a number");
+            }
         }
     }
 }
