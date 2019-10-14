@@ -102,6 +102,7 @@ namespace StringCalculator.Tests
             }
         }
 
+        [Test]
         public void TestLargeNumbers()
         {
             Assert.AreEqual(6, calculator.Add(largeIntegerIncludedList));
