@@ -76,9 +76,9 @@ namespace StringCalculator
             int numberToReturn;
             if (Int32.TryParse(number, out numberToReturn))
             {
-                if(numberToReturn < 0)
+                if(numberToReturn > 1000)
                 {
-                    
+                    numberToReturn = 0;
                 }
                 return numberToReturn;
             }
