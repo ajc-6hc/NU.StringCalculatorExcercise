@@ -22,6 +22,7 @@ namespace StringCalculator.Tests
         string inputOfDelimiterList;
         string negativeIntegerIncludedList;
         string largeIntegerIncludedList;
+        string inputOfMultipleCharDelimiterList;
 
         [SetUp]
         public void SetUp()
@@ -37,6 +38,7 @@ namespace StringCalculator.Tests
             inputOfDelimiterList = "//:\n1,2\n3:4";
             negativeIntegerIncludedList = "1,2,-3,-4";
             largeIntegerIncludedList = "1,2,3,1001";
+            inputOfMultipleCharDelimiterList = "//***\n1***2***3";
         }
 
         [Test]
@@ -106,6 +108,12 @@ namespace StringCalculator.Tests
         public void TestLargeNumbers()
         {
             Assert.AreEqual(6, calculator.Add(largeIntegerIncludedList));
+        }
+        
+        [Test]
+        public void TestMultipleCharInputDelimiter()
+        {
+            Assert.AreEqual(6, calculator.Add(inputOfMultipleCharDelimiterList));
         }
     }
 }
