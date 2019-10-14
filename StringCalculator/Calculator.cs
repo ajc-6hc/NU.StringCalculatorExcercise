@@ -31,9 +31,14 @@ namespace StringCalculator
 
                 //The inputted delimiter(s) will be split by a closing square bracket char
                 string[] inputDelimiterSplitter = new string[] { "]" };
+
                 //break the string by the newline char and take the first split
                 string inputDelimiterBase = numbers.Split(inputDelimiterBreaker, 0)[0];
+
+                //remove leading slashes from custom delimiter
                 string delimiterWithoutSlashes = Regex.Replace(inputDelimiterBase, @"\/\/", "");
+
+                //collate all additional delimiters into the original delimiters list
                 string[] additionalDelimiters = delimiterWithoutSlashes.Split(inputDelimiterSplitter, 0);
                 foreach(string delimiter in additionalDelimiters)
                 {
