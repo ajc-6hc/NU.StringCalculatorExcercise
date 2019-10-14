@@ -15,6 +15,7 @@ namespace StringCalculator.Tests
         string emptyString;
         string oneIntegerString;
         string twoIntegerString;
+        string tenIntegerString;
 
         [SetUp]
         public void SetUp()
@@ -23,6 +24,7 @@ namespace StringCalculator.Tests
             emptyString = "";
             oneIntegerString = "7";
             twoIntegerString = "6,5";
+            tenIntegerString = "1,2,3,4,5,6,7,8,9,10";
         }
 
         [Test]
@@ -41,6 +43,12 @@ namespace StringCalculator.Tests
         public void TestTwoIntegerString()
         {
             Assert.AreEqual(11, calculator.Add(twoIntegerString));
+        }
+
+        [Test]
+        public void TestTenIntegerString()
+        {
+            Assert.AreEqual(55, calculator.Add(tenIntegerString));
         }
     }
 }
