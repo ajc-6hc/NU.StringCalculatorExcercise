@@ -19,20 +19,7 @@ namespace StringCalculator
             
             return CountFromList(finalList, delimiters);
         }
-
-        private int GetIntegerFromString(string number)
-        {
-            int numberToReturn;
-            if (Int32.TryParse(number, out numberToReturn))
-            {
-                return numberToReturn;
-            }
-            else
-            {
-                throw new Exception("Value was not a number");
-            }
-        }
-
+        
         private string[] GetDelimiters(string numbers)
         {
             List<string> delimiters = new List<string> { ",", "\n" };
@@ -64,14 +51,41 @@ namespace StringCalculator
         private int CountFromList(string list, string[] delimiters)
         {
             string[] numbersFromList = list.Split(delimiters, 0);
-
             int count = 0;
+            List<int> negatives = new List<int>();
             foreach (string number in numbersFromList)
             {
-                count = count + GetIntegerFromString(number);
+                int latestNumber = GetIntegerFromString(number);
+                if(latestNumber < 0)
+                {
+                    negatives.Add(latestNumber);
+                }
+                count = count + latestNumber;
+            }
+
+            if(negatives.Any())
+            {
+                throw new Exception($"Negatives not allowed: {String.Join(",", negatives)}");
             }
 
             return count;
+        }
+
+        private int GetIntegerFromString(string number)
+        {
+            int numberToReturn;
+            if (Int32.TryParse(number, out numberToReturn))
+            {
+                if(numberToReturn < 0)
+                {
+                    
+                }
+                return numberToReturn;
+            }
+            else
+            {
+                throw new Exception("Value was not a number");
+            }
         }
     }
 }
