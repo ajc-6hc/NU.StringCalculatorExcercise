@@ -68,6 +68,7 @@ namespace StringCalculator
             int count = 0;
             foreach (string number in numbersFromList)
             {
+                count = count + GetIntegerFromString(number);
             }
 
             return count;
