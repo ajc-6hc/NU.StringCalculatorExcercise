@@ -1,0 +1,5 @@
+
+StringCalculator/.vs/*
+StringCalculator/obj/Debug/*
+StringCalculator/packages/*
+*.cache
