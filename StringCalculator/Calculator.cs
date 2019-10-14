@@ -11,6 +11,18 @@ namespace StringCalculator
         public int Add(string numbers)
         {
             if (string.IsNullOrEmpty(numbers)) return 0;
+
+            if(numbers.Contains(","))
+            { 
+                string[] numbersFromList = numbers.Split(",".ToCharArray());
+                int count = 0;
+
+                foreach(string number in numbersFromList)
+                {
+                    count = count + GetIntegerFromString(number);
+                }
+                return count;
+            }
             else return GetIntegerFromString(numbers);
         }
 
