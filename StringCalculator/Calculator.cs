@@ -12,18 +12,15 @@ namespace StringCalculator
         {
             if (string.IsNullOrEmpty(numbers)) return 0;
 
-            if(numbers.Contains(","))
-            { 
-                string[] numbersFromList = numbers.Split(",".ToCharArray());
-                int count = 0;
+            string[] delimiters = new string[] {",","\n"};
+            string[] numbersFromList = numbers.Split(delimiters, 0);
+            int count = 0;
 
-                foreach(string number in numbersFromList)
-                {
-                    count = count + GetIntegerFromString(number);
-                }
-                return count;
+            foreach(string number in numbersFromList)
+            {
+                count = count + GetIntegerFromString(number);
             }
-            else return GetIntegerFromString(numbers);
+            return count;
         }
 
         private int GetIntegerFromString(string number)
