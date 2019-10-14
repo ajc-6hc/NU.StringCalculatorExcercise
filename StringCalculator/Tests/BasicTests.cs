@@ -21,6 +21,7 @@ namespace StringCalculator.Tests
         string incorrectCombinationOfDelimitersList;
         string inputOfDelimiterList;
         string negativeIntegerIncludedList;
+        string largeIntegerIncludedList;
 
         [SetUp]
         public void SetUp()
@@ -35,6 +36,7 @@ namespace StringCalculator.Tests
             incorrectCombinationOfDelimitersList = "1,\n";
             inputOfDelimiterList = "//:\n1,2\n3:4";
             negativeIntegerIncludedList = "1,2,-3,-4";
+            largeIntegerIncludedList = "1,2,3,1001";
         }
 
         [Test]
@@ -98,6 +100,11 @@ namespace StringCalculator.Tests
                 Assert.That(() => e.Message.Contains("-3"));
                 Assert.That(() => e.Message.Contains("-4"));
             }
+        }
+
+        public void TestLargeNumbers()
+        {
+            Assert.AreEqual(6, calculator.Add(largeIntegerIncludedList));
         }
     }
 }
