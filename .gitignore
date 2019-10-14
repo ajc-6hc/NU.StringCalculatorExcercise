@@ -1,5 +1,6 @@
 
 StringCalculator/.vs/*
 StringCalculator/obj/Debug/*
+StringCalculator/bin/Debug/*
 StringCalculator/packages/*
 *.cache
