@@ -19,6 +19,7 @@ namespace StringCalculator.Tests
         string singleNewLineDelimiterList;
         string correctCombinationOfDelimitersList;
         string incorrectCombinationOfDelimitersList;
+        string inputOfDelimiterList;
 
         [SetUp]
         public void SetUp()
@@ -31,6 +32,7 @@ namespace StringCalculator.Tests
             singleNewLineDelimiterList = "1\n2";
             correctCombinationOfDelimitersList = "1\n2,3";
             incorrectCombinationOfDelimitersList = "1,\n";
+            inputOfDelimiterList = "//:\n1,2\n3:4";
         }
 
         [Test]
@@ -73,6 +75,12 @@ namespace StringCalculator.Tests
         public void TestIncorrectDelimiterCombination()
         {
             Assert.That(() => calculator.Add(incorrectCombinationOfDelimitersList), Throws.Exception);
+        }
+
+        [Test]
+        public void TestInputOfDelimiter()
+        {
+            Assert.AreEqual(10, calculator.Add(inputOfDelimiterList));
         }
     }
 }
