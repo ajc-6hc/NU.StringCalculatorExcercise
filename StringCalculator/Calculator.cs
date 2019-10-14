@@ -26,12 +26,20 @@ namespace StringCalculator
 
             if (numbers.StartsWith("//"))
             {
-                //The inputted delimiter will be split from the list by a new line char
+                //The inputted delimiter(s) will be broken from the list by a new line char
                 string[] inputDelimiterBreaker = new string[] { "\n" };
+
+                //The inputted delimiter(s) will be split by a closing square bracket char
+                string[] inputDelimiterSplitter = new string[] { "]" };
                 //break the string by the newline char and take the first split
-                string[] test = numbers.Split(inputDelimiterBreaker, 0);
                 string inputDelimiterBase = numbers.Split(inputDelimiterBreaker, 0)[0];
-                delimiters.Add(Regex.Replace(inputDelimiterBase, @"\/\/", ""));
+                string delimiterWithoutSlashes = Regex.Replace(inputDelimiterBase, @"\/\/", "");
+                string[] additionalDelimiters = delimiterWithoutSlashes.Split(inputDelimiterSplitter, 0);
+                foreach(string delimiter in additionalDelimiters)
+                {
+                    string delimiterWithoutBracket = Regex.Replace(delimiter, @"\[", "");
+                    if(delimiterWithoutBracket != "") delimiters.Add(delimiterWithoutBracket);
+                }
             }
 
             string[] finalDelimiterList = delimiters.ToArray<string>();
